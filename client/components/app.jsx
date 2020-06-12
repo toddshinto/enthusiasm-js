@@ -23,6 +23,15 @@ export default class App extends React.Component {
       .finally(() => this.setState({ isLoading: false }));
   }
 
+  setView(name, params) {
+    this.setState({
+      view: {
+        name: { name },
+        parmas: { params }
+      }
+    });
+  }
+
   render() {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
