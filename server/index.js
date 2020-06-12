@@ -21,16 +21,33 @@ app.get('/api/health-check', (req, res, next) => {
 
 app.get('/api/products', (req, res, next) => {
   const sql = `
-    select
-      "productId",
-      "name",
-      "price",
-      "image",
-      "shortDescription"
-    from "products"
+    select  "productId",
+            "name",
+            "price",
+            "image",
+            "shortDescription"
+      from  "products"
   `;
   db.query(sql)
     .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/products/:productId', (req, res, next) => {
+  const productId = Number(req.params.productId);
+  const sql = `
+    select  *
+      from  "products"
+     where  "productId" = $1
+  `;
+  const params = [productId];
+  db.query(sql, params)
+    .then(result => {
+      if (result.rows.length < 1) {
+        next(new ClientError(`cannot ${req.method} ${req.originalUrl}, product does not exist`, 404));
+      }
+      return res.status(200).json(result.rows[0]);
+    })
     .catch(err => next(err));
 });
 
