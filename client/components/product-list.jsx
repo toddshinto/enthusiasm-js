@@ -10,6 +10,10 @@ export default class ProductList extends React.Component {
     this.getProducts = this.getProducts.bind(this);
   }
 
+  componentDidMount() {
+    this.getProducts();
+  }
+
   getProducts() {
     fetch('/api/products')
       .then(response => response.json())
@@ -19,8 +23,10 @@ export default class ProductList extends React.Component {
   render() {
     const products = this.state.products;
     return (
-      products.map(product =>
-        <ProductListItem key={products.indexOf(product)} product={product}/>)
+      <div className="card-deck">
+        {products.map(product =>
+          <ProductListItem key={products.indexOf(product)} product={product}/>)}
+      </div>
     );
   }
 }
