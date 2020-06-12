@@ -19,7 +19,7 @@ export default class ProductDetails extends React.Component {
       const product = this.state.product;
       const price = product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
       return (
-        <div className="p-3">
+        <div className="p-3 shadow-sm">
           <div className="row">
             <button className="btn btn-link" onClick={() => this.props.setView('catalog', {})}>{'<'} Back to catalog</button>
           </div>
