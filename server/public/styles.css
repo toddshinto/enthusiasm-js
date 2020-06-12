@@ -1,3 +1,9 @@
 .card-md {
   width: 500px;
 }
+
+.details-img {
+  object-fit: contain;
+  height: 500px;
+  width: 250px;
+}
