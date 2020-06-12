@@ -13,6 +13,7 @@ export default class App extends React.Component {
         params: {}
       }
     };
+    this.setView = this.setView.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +28,7 @@ export default class App extends React.Component {
     this.setState({
       view: {
         name: { name },
-        parmas: { params }
+        params: { params }
       }
     });
   }
@@ -37,7 +38,7 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <div className="container">
         <Header />
-        <ProductList />
+        <ProductList setView={this.setView}/>
       </div>;
   }
 }

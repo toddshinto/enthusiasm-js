@@ -25,7 +25,7 @@ export default class ProductList extends React.Component {
     return (
       <div className="card-deck">
         {products.map(product =>
-          <ProductListItem key={products.indexOf(product)} product={product}/>)}
+          <ProductListItem key={products.indexOf(product)} product={product} setView={() => this.props.setView('details', { productId: product.productId })}/>)}
       </div>
     );
   }
