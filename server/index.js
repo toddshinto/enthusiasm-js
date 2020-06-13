@@ -108,11 +108,33 @@ app.post('/api/cart', (req, res, next) => {
           })
       );
     })
-    .then(cartId => {
-      // eslint-disable-next-line no-console
-      console.log(cartId);
+    .then(result => {
+      const cartItemId = result.cartItemId;
+      const selCartItem = `
+        select  "c"."cartItemId",
+                "c"."price",
+                "p"."productId",
+                "p"."image",
+                "p"."name",
+                "p"."shortDescription"
+          from  "cartItems" as "c"
+          join  "products" as "p" using ("productId")
+         where  "c"."cartItemId" = $1
+      `;
+      const cartIdParam = [cartItemId];
+      return (
+        db.query(selCartItem, cartIdParam)
+          .then(result2 => {
+            res.status(201).json(result2.rows[0]);
+          })
+      );
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred'
+      });
+    });
 });
 
 app.use('/api', (req, res, next) => {
