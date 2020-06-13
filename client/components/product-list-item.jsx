@@ -3,7 +3,7 @@ import React from 'react';
 export default class ProductListItem extends React.Component {
   render() {
     const product = this.props.product;
-    const price = product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    const price = Number((product.price / 100).toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     return (
       <div className="col-4 mb-3" onClick={() => this.props.setView('details', { productId: product.productId })}>
         <div className="card shadow-sm">
