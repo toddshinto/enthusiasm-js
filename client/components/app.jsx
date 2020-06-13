@@ -17,6 +17,7 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
+    this.addToCart = this.addToCart.bind(this);
 
   }
 
@@ -65,7 +66,10 @@ export default class App extends React.Component {
         <Header cart={this.state.cart} />
         {view === 'catalog'
           ? <ProductList setView={this.setView}/>
-          : <ProductDetails setView={this.setView} params={this.state.view.params} />
+          : <ProductDetails
+            setView={this.setView}
+            addToCart={this.addToCart}
+            params={this.state.view.params} />
         }
       </div>;
   }
