@@ -24,6 +24,14 @@ export default class App extends React.Component {
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
+    this.getCartItems();
+  }
+
+  getCartItems() {
+    fetch('/api/cart')
+      .then(res => res.json())
+      .then(cart => this.setState({ cart }))
+      .catch(err => this.setState({ message: err.message }));
   }
 
   setView(name, params) {
