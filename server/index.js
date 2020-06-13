@@ -52,10 +52,51 @@ app.get('/api/products/:productId', (req, res, next) => {
 });
 
 app.get('/api/cart', (req, res, next) => {
-  db.query('')
+  const sql = `
+    select  *
+      from  "carts"
+  `;
+  db.query(sql)
     .then(result => {
-      res.json([]);
+      res.json(result);
     });
+});
+
+app.post('/api/cart', (req, res, next) => {
+  const productId = req.body.productId;
+  if (!productId) {
+    return res.status(400).json({ error: 'productId required' });
+  }
+  if (productId <= 0 || !Number.isInteger(Number(productId))) {
+    return res.status(400).json({ error: 'invalid productId' });
+  }
+  const sql = `
+    select "price"
+    from "products"
+    where "productId" = $1
+  `;
+  const insCartSql = `
+    insert into "carts" ("cartId", "createdAt")
+    values (default, default)
+    returning "cartId"
+  `;
+  const params = [productId];
+  db.query(sql, params)
+    .then(result => {
+      if (result.rows.length < 1) {
+        return next(new ClientError(`cannot find product with productId of ${productId}`, 404));
+      }
+      return (
+        db.query(insCartSql)
+          .then(result2 => {
+            return { ...result2.rows[0], ...result.rows[0] };
+          })
+      );
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => console.error(err));
 });
 
 app.use('/api', (req, res, next) => {

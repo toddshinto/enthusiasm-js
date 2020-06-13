@@ -18,12 +18,16 @@ SET row_security = off;
 
 ALTER TABLE ONLY public.products DROP CONSTRAINT products_pkey;
 ALTER TABLE ONLY public.carts DROP CONSTRAINT carts_pkey;
+ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_pkey";
 ALTER TABLE public.products ALTER COLUMN "productId" DROP DEFAULT;
 ALTER TABLE public.carts ALTER COLUMN "cartId" DROP DEFAULT;
+ALTER TABLE public."cartItems" ALTER COLUMN "cartItemId" DROP DEFAULT;
 DROP SEQUENCE public."products_productId_seq";
 DROP TABLE public.products;
 DROP SEQUENCE public."carts_cartId_seq";
 DROP TABLE public.carts;
+DROP SEQUENCE public."cartItems_cartItemId_seq";
+DROP TABLE public."cartItems";
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -57,6 +61,38 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+
+--
+-- Name: cartItems; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."cartItems" (
+    "cartItemId" integer NOT NULL,
+    "cartId" integer NOT NULL,
+    "productId" integer NOT NULL,
+    price integer NOT NULL
+);
+
+
+--
+-- Name: cartItems_cartItemId_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."cartItems_cartItemId_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cartItems_cartItemId_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."cartItems_cartItemId_seq" OWNED BY public."cartItems"."cartItemId";
+
 
 --
 -- Name: carts; Type: TABLE; Schema: public; Owner: -
@@ -123,6 +159,13 @@ ALTER SEQUENCE public."products_productId_seq" OWNED BY public.products."product
 
 
 --
+-- Name: cartItems cartItemId; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."cartItems" ALTER COLUMN "cartItemId" SET DEFAULT nextval('public."cartItems_cartItemId_seq"'::regclass);
+
+
+--
 -- Name: carts cartId; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -137,10 +180,20 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 
 
 --
+-- Data for Name: cartItems; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
+\.
+
+
+--
 -- Data for Name: carts; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.carts ("cartId", "createdAt") FROM stdin;
+1	2020-06-13 00:11:35.743951+00
+2	2020-06-13 00:12:30.169503+00
 \.
 
 
@@ -159,10 +212,17 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 
 
 --
+-- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 1, false);
+
+
+--
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 1, false);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 2, true);
 
 
 --
@@ -170,6 +230,14 @@ SELECT pg_catalog.setval('public."carts_cartId_seq"', 1, false);
 --
 
 SELECT pg_catalog.setval('public."products_productId_seq"', 1, false);
+
+
+--
+-- Name: cartItems cartItems_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."cartItems"
+    ADD CONSTRAINT "cartItems_pkey" PRIMARY KEY ("cartItemId");
 
 
 --
