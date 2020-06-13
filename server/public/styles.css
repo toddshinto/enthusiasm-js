@@ -26,11 +26,13 @@
 .cart {
   font-size: 35px;
   display: flex;
+  bottom: 3px;
+  position: relative;
 }
 
 .cart-num {
   left: -26px;
-  top: -3px;
+  top: -7px;
   color: black;
   font-size: 18px;
   position: relative;
