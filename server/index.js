@@ -70,7 +70,7 @@ app.get('/api/cart', (req, res, next) => {
         return res.json(result.rows);
       });
   } else {
-    return [];
+    return res.send([]);
   }
 });
 
@@ -91,7 +91,7 @@ app.post('/api/cart', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (result.rows.length < 1) {
-        return next(new ClientError(`cannot find product with productId of ${productId}`, 404));
+        throw new ClientError(`cannot find product with productId of ${productId}`, 404);
       }
       if (req.session.cartId) {
         return { cartId: req.session.cartId, ...result.rows[0] };
