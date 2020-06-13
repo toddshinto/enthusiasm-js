@@ -52,14 +52,26 @@ app.get('/api/products/:productId', (req, res, next) => {
 });
 
 app.get('/api/cart', (req, res, next) => {
-  const sql = `
-    select  *
-      from  "carts"
+  if (req.session.cartId) {
+    const sql = `
+      select  "c"."cartItemId",
+              "c"."price",
+              "p"."productId",
+              "p"."image",
+              "p"."name",
+              "p"."shortDescription"
+        from  "cartItems" as "c"
+        join  "products" as "p" using ("productId")
+       where  "c"."cartId" = $1
   `;
-  db.query(sql)
-    .then(result => {
-      res.json(result);
-    });
+    const params = [req.session.cartId];
+    db.query(sql, params)
+      .then(result => {
+        return res.json(result.rows);
+      });
+  } else {
+    return [];
+  }
 });
 
 app.post('/api/cart', (req, res, next) => {
@@ -71,9 +83,9 @@ app.post('/api/cart', (req, res, next) => {
     return res.status(400).json({ error: 'invalid productId' });
   }
   const sql = `
-    select "price"
-    from "products"
-    where "productId" = $1
+    select  "price"
+      from  "products"
+     where  "productId" = $1
   `;
   const params = [productId];
   db.query(sql, params)
@@ -98,7 +110,6 @@ app.post('/api/cart', (req, res, next) => {
       }
     })
     .then(cartPriceId => {
-
       req.session.cartId = cartPriceId.cartId;
       const insCartItemRow = `
         insert into "cartItems" ("cartId", "productId", "price")
