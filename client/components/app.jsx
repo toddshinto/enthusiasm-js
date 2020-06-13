@@ -48,7 +48,7 @@ export default class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div className="container">
-        <Header />
+        <Header cart={this.state.cart} />
         {view === 'catalog'
           ? <ProductList setView={this.setView}/>
           : <ProductDetails setView={this.setView} params={this.state.view.params} />
