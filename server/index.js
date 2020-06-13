@@ -75,26 +75,42 @@ app.post('/api/cart', (req, res, next) => {
     from "products"
     where "productId" = $1
   `;
-  const insCartSql = `
-    insert into "carts" ("cartId", "createdAt")
-    values (default, default)
-    returning "cartId"
-  `;
   const params = [productId];
   db.query(sql, params)
     .then(result => {
       if (result.rows.length < 1) {
         return next(new ClientError(`cannot find product with productId of ${productId}`, 404));
       }
+      const insCart = `
+          insert into "carts" ("cartId", "createdAt")
+          values (default, default)
+          returning "cartId"
+        `;
       return (
-        db.query(insCartSql)
+        db.query(insCart)
           .then(result2 => {
             return { ...result2.rows[0], ...result.rows[0] };
           })
       );
     })
-    .then(response => {
-      console.log(response);
+    .then(cartPriceId => {
+      req.session.cartId = cartPriceId.cartId;
+      const insCartItemRow = `
+        insert into "cartItems" ("cartId", "productId", "price")
+        values ($1, $2, $3)
+        returning "cartItemId"
+      `;
+      const cart = [cartPriceId.cartId, productId, cartPriceId.price];
+      return (
+        db.query(insCartItemRow, cart)
+          .then(result => {
+            return result.rows[0];
+          })
+      );
+    })
+    .then(cartId => {
+      // eslint-disable-next-line no-console
+      console.log(cartId);
     })
     .catch(err => console.error(err));
 });
