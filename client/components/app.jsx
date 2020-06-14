@@ -86,29 +86,39 @@ export default class App extends React.Component {
 
   render() {
     const view = this.state.view.name;
+    let component = null;
+    switch (view) {
+      case 'order-success':
+        component = <OrderSuccess
+          setView={this.setView} />;
+        break;
+      case 'details':
+        component = <ProductDetails
+          setView={this.setView}
+          addToCart={this.addToCart}
+          params={this.state.view.params} />;
+        break;
+      case 'cart':
+        component = <CartSummary
+          cartItems={this.state.cart}
+          setView={this.setView} />;
+        break;
+      case 'checkout':
+        component = <CheckoutForm
+          setView={this.setView}
+          placeOrder={this.placeOrder}
+          cartItems={this.state.cart} />;
+        break;
+      default:
+        component = <ProductList
+          setView={this.setView} />;
+        break;
+    }
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div className="container">
         <Header cart={this.state.cart} setView={this.setView}/>
-        { view === 'catalog'
-          ? <ProductList setView={this.setView}/>
-          : view === 'details'
-            ? <ProductDetails
-              setView={this.setView}
-              addToCart={this.addToCart}
-              params={this.state.view.params} />
-            : view === 'cart'
-              ? <CartSummary
-                cartItems={this.state.cart}
-                setView={this.setView} />
-              : view === 'checkout'
-                ? <CheckoutForm
-                  setView={this.setView}
-                  placeOrder={this.placeOrder}
-                  cartItems={this.state.cart}/>
-                : <OrderSuccess
-                  setView={this.setView} />
-        }
+        {component}
       </div>;
   }
 }
