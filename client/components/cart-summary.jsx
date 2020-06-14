@@ -20,8 +20,10 @@ export default class CartSummary extends React.Component {
         <h1>Your Cart</h1>
         {cartItems.map(item =>
           <CartSummaryItem key={cartItems.indexOf(item)} item={item}/>)}
-        <h3>Total: {total} </h3>
-        <button type="button" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+        <div className="d-flex flex-row justify-content-between pl-4 pr-4">
+          <h3>Total: {total} </h3>
+          <button type="button" className={'btn btn-dark text-white mb-5'} onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+        </div>
       </>
     );
   }
