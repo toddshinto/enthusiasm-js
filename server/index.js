@@ -153,6 +153,31 @@ app.post('/api/cart', (req, res, next) => {
     });
 });
 
+app.post('/api/orders', (req, res, next) => {
+  if (!req.session.cartId) {
+    return res.status(400).json({ error: 'valid cartId not found' });
+  }
+  const { name, creditCard, shippingAddress } = req.body;
+  if (!name) return res.status(400).json({ error: 'valid name required' });
+  if (!creditCard) return res.status(400).json({ error: 'valid credit card required' });
+  if (!shippingAddress) return res.status(400).json({ error: 'valid shipping address required' });
+  const insertOrder = `
+    insert into "orders" ("name", "creditCard", "shippingAddress", "cartId")
+    values ($1, $2, $3, $4)
+    returning "name", "creditCard", "shippingAddress", "createdAt", "orderId"
+  `;
+  const orderParams = [name, creditCard, shippingAddress, 8];
+  db.query(insertOrder, orderParams)
+    .then(result => {
+      req.session.cartId = null;
+      return res.status(201).json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'An unexpected error occurred' });
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
