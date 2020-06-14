@@ -24,7 +24,7 @@ export default class ProductDetails extends React.Component {
             <button className="btn btn-link back" onClick={() => this.props.setView('catalog', {})}>{'<'} Back to catalog</button>
           </div>
           <div className="row" >
-            <img src={product.image} className="col-6 details-img"/>
+            <img src={product.image} className="col-6 details-img" style={{ cursor: 'pointer' }}/>
             <div className="col-6">
               <div className="col">
                 <h3>{product.name}</h3>
