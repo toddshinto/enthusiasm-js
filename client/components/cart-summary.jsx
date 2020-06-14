@@ -21,6 +21,7 @@ export default class CartSummary extends React.Component {
         {cartItems.map(item =>
           <CartSummaryItem key={cartItems.indexOf(item)} item={item}/>)}
         <h3>Total: {total} </h3>
+        <button type="button" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
       </>
     );
   }
