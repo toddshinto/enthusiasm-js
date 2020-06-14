@@ -11,34 +11,44 @@
 .wicked-header {
   color: white;
   background-color: black;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   padding: 10px 10px 5px 10px;
   margin-bottom: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .icon {
   font-size: 25px
 }
 
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
 .cart {
   font-size: 35px;
-  display: flex;
-  bottom: 3px;
-  position: relative;
+  position: absolute;
+  right: 0px;
+  top: -4px;
   cursor: pointer;
 }
 
 .cart-num {
-  left: -26px;
-  top: -7px;
   color: black;
   font-size: 18px;
-  position: relative;
+  position: absolute;
+  right: 9.5px;
+  top: -4px;
   font-weight: bolder;
   cursor: pointer;
+}
+
+.cart-and-count {
+  position: relative;
+  right: 0px;
+  width: 200px;
 }
 
 .summary-img {
