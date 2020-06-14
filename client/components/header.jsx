@@ -3,7 +3,12 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <h5 className="bg-dark text-white pl-3 pt-2 pb-2">Wicked Sales <i className="fas fa-theater-masks" /></h5>
+      <div className="wicked-header">
+        <h5 className="">Wicked Sales</h5>
+        <i className="fas fa-theater-masks icon" />
+        <i className="fas fa-shopping-cart ml-auto pr-1 cart"></i>
+        <div className="cart-num">{this.props.cart.length}</div>
+      </div>
     );
   }
 }

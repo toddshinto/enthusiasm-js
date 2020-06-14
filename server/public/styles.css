@@ -7,3 +7,34 @@
   height: 500px;
   width: 250px;
 }
+
+.wicked-header {
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 5px 10px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  font-size: 25px
+}
+
+.cart {
+  font-size: 35px;
+  display: flex;
+  bottom: 3px;
+  position: relative;
+}
+
+.cart-num {
+  left: -26px;
+  top: -7px;
+  color: black;
+  font-size: 18px;
+  position: relative;
+  font-weight: bolder;
+}

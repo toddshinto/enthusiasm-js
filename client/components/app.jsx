@@ -12,9 +12,13 @@ export default class App extends React.Component {
       view: {
         name: 'catalog',
         params: {}
-      }
+      },
+      cart: []
     };
     this.setView = this.setView.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
+    this.addToCart = this.addToCart.bind(this);
+
   }
 
   componentDidMount() {
@@ -23,6 +27,30 @@ export default class App extends React.Component {
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
+    this.getCartItems();
+  }
+
+  getCartItems() {
+    fetch('/api/cart')
+      .then(res => res.json())
+      .then(cart => this.setState({ cart }))
+      .catch(err => this.setState({ message: err.message }));
+  }
+
+  addToCart(product) {
+    fetch('/api/cart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    })
+      .then(res => res.json())
+      .then(data => {
+        const newCart = [...this.state.cart, data];
+        return newCart;
+      })
+      .then(newCart => this.setState({ cart: newCart }));
   }
 
   setView(name, params) {
@@ -39,10 +67,13 @@ export default class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div className="container">
-        <Header />
+        <Header cart={this.state.cart} />
         {view === 'catalog'
           ? <ProductList setView={this.setView}/>
-          : <ProductDetails setView={this.setView} params={this.state.view.params} />
+          : <ProductDetails
+            setView={this.setView}
+            addToCart={this.addToCart}
+            params={this.state.view.params} />
         }
       </div>;
   }
