@@ -67,19 +67,51 @@ export default class CheckoutForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="col-7 pt-3 pb-5 pl-3 pr-3 rounded shadow-sm">
           <h5 className="mb-3">Total: {total}</h5>
           <div className="form-group">
-            <label htmlFor="name" className="col-3">Name</label>
-            <input type="text" className="col-9" name="name" id="name" onChange={this.handleChange} value={this.state.name} placeholder="Name" />
+            <label htmlFor="name" className="col-3">
+              Name
+            </label>
+            <input
+              type="text"
+              className="col-9"
+              name="name"
+              id="name"
+              onChange={this.handleChange}
+              value={this.state.name}
+              placeholder="Name"
+              required />
           </div>
           <div className="form-group">
-            <label htmlFor="creditCard" className="col-3">Credit Card</label>
-            <input type="text" className="col-9" name="creditCard" id="creditCard" onChange={this.handleChangeCC} value={this.state.creditCard} placeholder="0000 0000 0000 0000"></input>
+            <label htmlFor="creditCard" className="col-3">
+              Credit Card
+            </label>
+            <input
+              type="text"
+              className="col-9"
+              name="creditCard"
+              id="creditCard"
+              onChange={this.handleChangeCC}
+              value={this.state.creditCard}
+              placeholder="0000 0000 0000 0000"
+              required />
           </div>
           <div className="form-group">
-            <label htmlFor="shippingAddress" className="col-3">Shipping Address</label>
-            <textarea name="shippingAddress" className="col-9" id="shippingAddress" onChange={this.handleChange} value={this.state.shippingAddress} placeholder="Shipping Address"></textarea>
+            <label htmlFor="shippingAddress" className="col-3">
+              Shipping Address
+            </label>
+            <textarea
+              name="shippingAddress"
+              className="col-9"
+              id="shippingAddress"
+              onChange={this.handleChange}
+              value={this.state.shippingAddress}
+              placeholder="Shipping Address"
+              required />
           </div>
           <div className="d-flex flex-row justify-content-end">
-            <button type="submit" className="btn btn-dark mr-3">Submit</button>
+            <button
+              type="submit"
+              className="btn btn-dark mr-3"
+            >Submit</button>
           </div>
         </form>
       </div>

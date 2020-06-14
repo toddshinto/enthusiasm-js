@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import OrderSuccess from './order-success';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -65,9 +66,12 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        this.setState({ cart: [], view: { name: 'catalog', params: {} } });
-        // eslint-disable-next-line no-console
-        console.log(data);
+        if (data[0].orderId) {
+          this.setState({ cart: [], view: { name: 'order-success', params: {} } });
+        }
+      })
+      .catch(err => {
+        console.error(err);
       });
   }
 
@@ -86,15 +90,24 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <div className="container">
         <Header cart={this.state.cart} setView={this.setView}/>
-        { view === 'catalog' ? <ProductList setView={this.setView}/>
-          : view === 'details' ? <ProductDetails
-            setView={this.setView}
-            addToCart={this.addToCart}
-            params={this.state.view.params} />
-            : view === 'cart' ? <CartSummary
-              cartItems={this.state.cart}
-              setView={this.setView} />
-              : <CheckoutForm placeOrder={this.placeOrder} cartItems={this.state.cart}/>
+        { view === 'catalog'
+          ? <ProductList setView={this.setView}/>
+          : view === 'details'
+            ? <ProductDetails
+              setView={this.setView}
+              addToCart={this.addToCart}
+              params={this.state.view.params} />
+            : view === 'cart'
+              ? <CartSummary
+                cartItems={this.state.cart}
+                setView={this.setView} />
+              : view === 'checkout'
+                ? <CheckoutForm
+                  setView={this.setView}
+                  placeOrder={this.placeOrder}
+                  cartItems={this.state.cart}/>
+                : <OrderSuccess
+                  setView={this.setView} />
         }
       </div>;
   }

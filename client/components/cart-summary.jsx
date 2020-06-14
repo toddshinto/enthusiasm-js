@@ -6,11 +6,13 @@ export default class CartSummary extends React.Component {
     const cartItems = this.props.cartItems;
     let prices;
     let total;
+    let disabled = false;
     if (cartItems.length > 0) {
       prices = cartItems.reduce((x, y) => (x + Number(y.price)), 0);
       total = Number((prices / 100).toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     } else {
       total = 'N/A';
+      disabled = true;
     }
     return (
       <>
@@ -22,7 +24,13 @@ export default class CartSummary extends React.Component {
           <CartSummaryItem key={cartItems.indexOf(item)} item={item}/>)}
         <div className="d-flex flex-row justify-content-between pl-4 pr-4">
           <h3>Total: {total} </h3>
-          <button type="button" className={'btn btn-dark text-white mb-5'} onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+          <button
+            type="button"
+            className={'btn btn-dark text-white mb-5'}
+            onClick={() => this.props.setView('checkout', {})}
+            disabled={disabled}>
+              Checkout
+          </button>
         </div>
       </>
     );
