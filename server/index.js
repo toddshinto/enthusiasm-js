@@ -166,7 +166,7 @@ app.post('/api/orders', (req, res, next) => {
     values ($1, $2, $3, $4)
     returning "name", "creditCard", "shippingAddress", "createdAt", "orderId"
   `;
-  const orderParams = [name, creditCard, shippingAddress, 8];
+  const orderParams = [name, creditCard, shippingAddress, req.session.cartId];
   db.query(insertOrder, orderParams)
     .then(result => {
       req.session.cartId = null;
