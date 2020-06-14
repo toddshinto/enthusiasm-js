@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
+import CartSummary from './cart-summary';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -67,13 +68,15 @@ export default class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div className="container">
-        <Header cart={this.state.cart} />
-        {view === 'catalog'
-          ? <ProductList setView={this.setView}/>
-          : <ProductDetails
+        <Header cart={this.state.cart} setView={this.setView}/>
+        { view === 'catalog' ? <ProductList setView={this.setView}/>
+          : view === 'details' ? <ProductDetails
             setView={this.setView}
             addToCart={this.addToCart}
             params={this.state.view.params} />
+            : <CartSummary
+              cartItems={this.state.cart}
+              setView={this.setView} />
         }
       </div>;
   }
