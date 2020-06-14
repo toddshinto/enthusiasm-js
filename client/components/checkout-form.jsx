@@ -8,6 +8,9 @@ export default class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleChange(event) {
