@@ -5,7 +5,7 @@ export default class ProductListItem extends React.Component {
     const product = this.props.product;
     const price = Number((product.price / 100).toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     return (
-      <div className="col-4 mb-3 product" >
+      <div className="col-md-4 mb-3 product" >
         <div className="card h-100 shadow-sm">
           <img className="card-img-top" onClick={() => this.props.setView('details', { productId: product.productId })} src={product.image} style={{ height: 250, objectFit: 'contain', cursor: 'pointer' }}/>
           <div className="card-body">
