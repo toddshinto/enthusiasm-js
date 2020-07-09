@@ -1,5 +1,5 @@
 # enthusiasm
-> A full stack Node.js and React shopping cart app.
+#### A full stack Node.js and React shopping cart app.
 
 [![livesite][1]][2]
 
