@@ -3,9 +3,9 @@ import React from 'react';
 export default class Header extends React.Component {
   render() {
     return (
-      <div className="wicked-header">
+      <div className="enth-header">
         <div className="logo">
-          <h5>Wicked Sales</h5>
+          <h5>Enthusiasm</h5>
           <i className="fas fa-theater-masks icon" />
         </div>
         <div className="cart-and-count">

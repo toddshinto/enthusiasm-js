@@ -6,12 +6,19 @@ export default class CheckoutForm extends React.Component {
     this.state = {
       name: '',
       creditCard: '',
-      shippingAddress: ''
+      shippingAddress: '',
+      ccBlur: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleChangeCC = this.handleChangeCC.bind(this);
+    this.validate = this.validate.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+
+  handleBlur() {
+    this.setState({ ccBlur: true });
   }
 
   handleChange(event) {
@@ -40,6 +47,10 @@ export default class CheckoutForm extends React.Component {
     this.handleReset();
   }
 
+  validate(creditCard) {
+    return creditCard.length === 12;
+  }
+
   handleReset() {
     this.setState({
       name: '',
@@ -50,6 +61,8 @@ export default class CheckoutForm extends React.Component {
 
   render() {
     const cartItems = this.props.cartItems;
+    const validated = this.validate(this.state.creditCard);
+    const touched = (this.state.ccBlur && !validated);
     let prices;
     let total;
     if (cartItems.length > 0) {
@@ -86,13 +99,16 @@ export default class CheckoutForm extends React.Component {
             </label>
             <input
               type="text"
-              className="col-9"
+              className={'col-9'}
               name="creditCard"
               id="creditCard"
+              onBlur={this.handleBlur}
+              maxLength={12}
               onChange={this.handleChangeCC}
               value={this.state.creditCard}
               placeholder="0000 0000 0000 0000"
               required />
+            {touched ? <p className="text-right w-100 text-danger">12 digits required</p> : <></>}
           </div>
           <div className="form-group">
             <label htmlFor="shippingAddress" className="col-3">
@@ -110,7 +126,8 @@ export default class CheckoutForm extends React.Component {
           <div className="d-flex flex-row justify-content-end">
             <button
               type="submit"
-              className="btn btn-dark mr-3"
+              className={`btn btn-dark mr-3 cust-btn ${validated ? '' : 'error'}`}
+              disabled={!validated ? 'disabled' : ''}
             >Submit</button>
           </div>
         </form>

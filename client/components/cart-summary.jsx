@@ -26,7 +26,7 @@ export default class CartSummary extends React.Component {
           <h3>Total: {total} </h3>
           <button
             type="button"
-            className={'btn btn-dark text-white mb-5'}
+            className={'btn btn-dark text-white mb-5 cust-btn'}
             onClick={() => this.props.setView('checkout', {})}
             disabled={disabled}>
               Checkout
