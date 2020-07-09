@@ -72,56 +72,63 @@ export default class CheckoutForm extends React.Component {
       total = 'N/A';
     }
     return (
-      <div className="container">
+      <div className="container ckout-container">
         <h3>Checkout</h3>
-        <div className="row">
+        <div className="row back-row">
           <button className="btn btn-link back" onClick={() => this.props.setView('catalog', {})}>{'<'} Back to catalog</button>
         </div>
-        <form onSubmit={this.handleSubmit} className="col-7 pt-3 pb-5 pl-3 pr-3 rounded shadow-sm">
+        <form onSubmit={this.handleSubmit} className="col pt-3 pb-5 pl-3 pr-3 rounded shadow-sm ckout-form">
           <h5 className="mb-3">Total: {total}</h5>
-          <div className="form-group">
-            <label htmlFor="name" className="col-3">
+          <div className="row ml-3 text-danger">Do not enter personal information!</div>
+          <div className="form-group col-12 col-xs-4">
+            <label htmlFor="name">
               Name
             </label>
-            <input
-              type="text"
-              className="col-9"
-              name="name"
-              id="name"
-              onChange={this.handleChange}
-              value={this.state.name}
-              placeholder="Name"
-              required />
+            <div>
+              <input
+                className="col-12"
+                type="text"
+                name="name"
+                id="name"
+                onChange={this.handleChange}
+                value={this.state.name}
+                placeholder="Name"
+                required />
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="creditCard" className="col-3">
+          <div className="form-group col-12">
+            <label htmlFor="creditCard">
               Credit Card
             </label>
-            <input
-              type="text"
-              className={'col-9'}
-              name="creditCard"
-              id="creditCard"
-              onBlur={this.handleBlur}
-              maxLength={12}
-              onChange={this.handleChangeCC}
-              value={this.state.creditCard}
-              placeholder="0000 0000 0000 0000"
-              required />
+            <div>
+              <input
+                className="col-12"
+                type="text"
+                name="creditCard"
+                id="creditCard"
+                onBlur={this.handleBlur}
+                maxLength={12}
+                onChange={this.handleChangeCC}
+                value={this.state.creditCard}
+                placeholder="0000 0000 0000 0000"
+                required />
+            </div>
             {touched ? <p className="text-right w-100 text-danger">12 digits required</p> : <></>}
           </div>
-          <div className="form-group">
-            <label htmlFor="shippingAddress" className="col-3">
+          <div className="form-group col-12">
+            <label htmlFor="shippingAddress">
               Shipping Address
             </label>
-            <textarea
-              name="shippingAddress"
-              className="col-9"
-              id="shippingAddress"
-              onChange={this.handleChange}
-              value={this.state.shippingAddress}
-              placeholder="Shipping Address"
-              required />
+            <div>
+              <textarea
+                className="col-12"
+                name="shippingAddress"
+                id="shippingAddress"
+                onChange={this.handleChange}
+                value={this.state.shippingAddress}
+                placeholder="Shipping Address"
+                required />
+            </div>
           </div>
           <div className="d-flex flex-row justify-content-end">
             <button

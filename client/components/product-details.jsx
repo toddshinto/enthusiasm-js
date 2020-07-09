@@ -20,12 +20,12 @@ export default class ProductDetails extends React.Component {
       const price = Number((product.price / 100).toFixed(2)).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
       return (
         <div className="p-3 shadow-sm">
-          <div className="row">
+          <div className="row back-row">
             <button className="btn btn-link back" onClick={() => this.props.setView('catalog', {})}>{'<'} Back to catalog</button>
           </div>
           <div className="row" >
-            <img src={product.image} className="col-6 details-img" style={{ cursor: 'pointer' }}/>
-            <div className="col-6">
+            <img src={product.image} className="col-sm-12 col-md-6 details-img" style={{ cursor: 'pointer' }}/>
+            <div className="col-sm-12 col-md-6">
               <div className="col">
                 <h3>{product.name}</h3>
                 <h5 className="text-secondary">{price}</h5>

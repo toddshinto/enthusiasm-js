@@ -63,6 +63,21 @@
   cursor: pointer;
 }
 
+.ckout-form {
+  max-width: 720px;
+}
+
+.med-num {
+  right: 5.5px;
+}
+
+.big-num {
+  right: .5px;
+  color: white;
+  font-size: 14px;
+  top: -1px;
+}
+
 .cart-and-count {
   position: relative;
   right: 0px;
@@ -118,6 +133,17 @@
 
 .back:hover {
   color: rgb(0, 113, 249);
+}
+
+.back-row {
+  width: 100%;
+  text-align: left;
+}
+
+.ckout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cust-btn:hover {
