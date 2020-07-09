@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import OrderSuccess from './order-success';
+import DemoModal from './demo-modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'demo',
         params: {}
       },
       cart: []
@@ -31,6 +32,10 @@ export default class App extends React.Component {
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
     this.getCartItems();
+  }
+
+  demoAccept() {
+    this.setState({ demo: false });
   }
 
   getCartItems() {
@@ -109,8 +114,12 @@ export default class App extends React.Component {
           placeOrder={this.placeOrder}
           cartItems={this.state.cart} />;
         break;
-      default:
+      case 'catalog':
         component = <ProductList
+          setView={this.setView} />;
+        break;
+      default:
+        component = <DemoModal
           setView={this.setView} />;
         break;
     }

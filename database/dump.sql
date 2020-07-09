@@ -16,7 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-ALTER TABLE ONLY public.products DROP CONSTRAINT products_pkey;
 ALTER TABLE ONLY public.orders DROP CONSTRAINT orders_pkey;
 ALTER TABLE ONLY public.carts DROP CONSTRAINT carts_pkey;
 ALTER TABLE ONLY public."cartItems" DROP CONSTRAINT "cartItems_pkey";
@@ -229,89 +228,6 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 --
 
 COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
-2	42	6	830
-3	43	6	830
-4	44	6	830
-5	45	6	830
-6	46	6	830
-7	47	6	830
-8	48	6	830
-9	49	6	830
-10	50	6	830
-11	51	6	830
-12	52	6	830
-13	53	6	830
-14	54	6	830
-15	55	6	830
-16	56	6	830
-17	57	6	830
-18	58	6	830
-19	59	6	830
-20	60	6	830
-21	61	6	830
-22	62	6	830
-23	63	6	830
-24	64	6	830
-25	65	6	830
-26	66	6	830
-27	67	6	830
-29	68	6	830
-31	69	6	830
-32	70	6	830
-33	71	6	830
-34	72	6	830
-35	73	6	830
-36	73	6	830
-37	73	6	830
-38	73	6	830
-39	74	2	2595
-40	74	2	2595
-41	74	2	2595
-42	74	3	2900
-43	74	3	2900
-44	74	3	2900
-45	75	3	2900
-46	75	3	2900
-47	74	3	2900
-48	74	3	2900
-49	74	3	2900
-50	74	3	2900
-51	74	3	2900
-52	74	3	2900
-53	74	3	2900
-54	74	3	2900
-55	74	3	2900
-56	74	3	2900
-57	74	1	2999
-58	76	2	2595
-59	76	2	2595
-60	76	2	2595
-61	76	2	2595
-62	76	2	2595
-63	76	2	2595
-64	76	2	2595
-65	76	2	2595
-66	76	2	2595
-67	76	2	2595
-68	76	2	2595
-69	76	2	2595
-70	76	2	2595
-71	76	2	2595
-72	76	2	2595
-73	76	2	2595
-74	76	2	2595
-75	76	3	2900
-76	76	3	2900
-77	76	3	2900
-78	76	3	2900
-79	76	3	2900
-80	76	3	2900
-81	76	3	2900
-82	76	3	2900
-83	76	3	2900
-84	76	3	2900
-85	77	2	2595
-86	77	1	2999
 \.
 
 
@@ -320,83 +236,6 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 --
 
 COPY public.carts ("cartId", "createdAt") FROM stdin;
-1	2020-06-13 00:11:35.743951+00
-2	2020-06-13 00:12:30.169503+00
-3	2020-06-13 01:11:20.278835+00
-4	2020-06-13 01:12:09.792153+00
-5	2020-06-13 01:13:23.112379+00
-6	2020-06-13 01:16:30.637484+00
-7	2020-06-13 01:18:08.006517+00
-8	2020-06-13 01:20:59.675202+00
-9	2020-06-13 01:21:27.957326+00
-10	2020-06-13 01:22:57.297096+00
-11	2020-06-13 01:23:33.601505+00
-12	2020-06-13 01:24:01.33785+00
-13	2020-06-13 01:24:10.77002+00
-14	2020-06-13 01:24:30.384711+00
-15	2020-06-13 01:30:28.210414+00
-16	2020-06-13 01:30:34.256113+00
-17	2020-06-13 01:30:50.172553+00
-18	2020-06-13 01:31:00.988299+00
-19	2020-06-13 01:32:08.798663+00
-20	2020-06-13 01:32:43.095782+00
-21	2020-06-13 01:34:23.535438+00
-22	2020-06-13 01:35:12.310975+00
-23	2020-06-13 01:36:15.355594+00
-24	2020-06-13 01:36:58.049633+00
-25	2020-06-13 01:39:55.825421+00
-26	2020-06-13 01:42:22.375753+00
-27	2020-06-13 01:42:41.657886+00
-28	2020-06-13 01:43:34.811496+00
-29	2020-06-13 01:48:44.856891+00
-30	2020-06-13 01:52:55.216233+00
-31	2020-06-13 01:53:14.905003+00
-32	2020-06-13 01:53:50.785352+00
-33	2020-06-13 01:54:01.46063+00
-34	2020-06-13 02:13:57.684761+00
-35	2020-06-13 06:21:53.308059+00
-36	2020-06-13 06:22:10.162026+00
-37	2020-06-13 06:22:33.919421+00
-38	2020-06-13 06:25:06.181866+00
-39	2020-06-13 06:27:14.386267+00
-40	2020-06-13 06:27:22.998647+00
-41	2020-06-13 07:09:31.578545+00
-42	2020-06-13 07:11:36.617114+00
-43	2020-06-13 07:30:44.974558+00
-44	2020-06-13 07:31:05.148334+00
-45	2020-06-13 07:31:30.172499+00
-46	2020-06-13 07:36:36.80968+00
-47	2020-06-13 07:39:01.405559+00
-48	2020-06-13 07:39:21.573547+00
-49	2020-06-13 07:40:15.183363+00
-50	2020-06-13 07:40:42.350707+00
-51	2020-06-13 07:43:55.146543+00
-52	2020-06-13 07:48:34.113085+00
-53	2020-06-13 07:52:09.423214+00
-54	2020-06-13 07:52:32.466889+00
-55	2020-06-13 07:52:55.363117+00
-56	2020-06-13 07:54:38.203664+00
-57	2020-06-13 07:56:24.574769+00
-58	2020-06-13 07:56:49.903779+00
-59	2020-06-13 07:59:41.753086+00
-60	2020-06-13 08:02:33.619636+00
-61	2020-06-13 08:50:21.187681+00
-62	2020-06-13 08:56:57.836319+00
-63	2020-06-13 09:12:02.093526+00
-64	2020-06-13 09:16:43.174656+00
-65	2020-06-13 09:21:51.107028+00
-66	2020-06-13 09:22:07.956216+00
-67	2020-06-13 09:23:26.110964+00
-68	2020-06-13 09:32:48.636687+00
-69	2020-06-13 09:33:01.979444+00
-70	2020-06-13 09:33:43.204282+00
-71	2020-06-13 09:33:45.562934+00
-72	2020-06-13 09:33:58.152885+00
-73	2020-06-13 09:34:01.279174+00
-74	2020-06-13 23:59:23.831662+00
-75	2020-06-14 00:01:42.825556+00
-76	2020-06-14 03:49:47.70208+00
-77	2020-06-14 03:55:58.791861+00
 \.
 
 
@@ -413,12 +252,15 @@ COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", 
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription") FROM stdin;
-1	Shake Weight	2999	/images/shake-weight.jpg	Dynamic Inertia technology ignites muscles in arms, shoulders, and chest.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-2	ShamWow	2595	/images/shamwow.jpg	It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-3	Snuggie	2900	/images/snuggie.jpg	Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-4	Wax Vac	999	/images/wax-vac.jpg	Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-5	Ostrich Pillow	9900	/images/ostrich-pillow.jpg	Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-6	Tater Mitts	830	/images/tater-mitts.jpg	8 Seconds is all you need with Tater Mitts. Quickly and easily prepare all your favorite potato dishes with Tater Mitts.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
+2	John Wick Action Figure	29900	/images/johnwick.jpg	When you have to kill the boogeyman, you buy a John Wick action figure!	John Wick was once named Jardani Jovonovich, born in Padhorje, Byelorussian SSR, Soviet Union, to parents who were of Romani, Russian, Ukrainian and Koryo saram descent. He was orphaned at a young age for unknown reasons before being taken in by his father''s old friend, who would eventually become his mentor.  He was adopted by the Ruska Roma organization from Belarus and raised by their leader, the Director, in their New York headquarters. Under the supervision of the Director Jardani was trained as an assassin; he learned multiple skills including martial arts, firearms, edged weapons, improvised weapons, tactical driving, infiltration, escapology and more. At some point Jardani took the name "John Wick" and left the Ruska Roma. He became a feared and ruthless hitman his targets would call "Baba Yaga". Wick was noted for his great focus and determination; his fighting prowess was such that he once single-handedly killed three men with a pencil. Eventually John met a woman named Helen and fell in love. Hoping to leave his past as a contract killer behind him and pursue a normal life, John met with crime boss Viggo Tarasov, who agreed to grant him his wish if he could carry out a certain task for him. The exact nature of this task is unknown but it has been consistantly described as "impossible" by various characters throughout the series.
+5	1965 Shelby Mustang GT350	35000000	/images/mustang.jpg	The 1965–1966 cars were the smallest and lightest of the GT 350 models.	One of the first “pony cars” – fast and sporty (and with lots of horsepower under the hood) – was of course the iconic Ford Mustang. Introduced in mid-1964, it quickly became a best-seller. Only problem, it was considered a bit small, and lacking the full-throated power that buyers wanted. Ford’s Lee Iacocca felt that he could increase sales with more powerful engines and better handling, and in searching for a solution, he approached Carroll Shelby. Iacocca wanted Shelby to prepare and campaign the Mustang as a B Production SCCA racer (Sports Car Club of America).
+6	Helicopter Tour	15000	/images/helicopter.jpg	A one hour scenic tour of the coastline.	The fastest speed recorded by a helicopter is around 400 kph (248 mph). The longest distance traveled in a helicopter without landing is 3562 km (2213 miles). Helicopters can be used to fight fires by carrying tanks or helibuckets filled with water. Hovering can be the most difficult skill when flying a helicopter. We try to break these records on each outing.
+3	Spider-Man Costume	4900	/images/spiderman.jpg	You are ready to swing from building to building in our Spider-Man costume.	Spider-Man uses web-shooters which are twin devices worn on his wrists which can shoot thin strands of a special “web fluid” at high pressure. The web fluid is a shear-thinning liquid (virtually solid until a shearing force is applied to it, rendering it fluid) whose exact formula is as yet unknown, but is related to nylon. On contact with air, the long-chain polymer knits and forms an extremely tough, flexible fiber with extraordinary adhesive properties. The web fluid’s adhesive quality diminishes rapidly with exposure to air. (Where it does not make contact with air, such as the attachment disk of the web-shooter, it remains very adhesive.) After about 2 hour, certain imbibed ether cause the solid form of the web fluid to dissolve into a powder. Because the fluid almost instantly sublimates from solid to liquid when under shear pressure, and is not adhesive in its anaerobic liquid/solid phase transition point, there is no clogging of the web-shooter’s parts.
+1	Poké Ball Set	15100	/images/pokeball.jpg	A type of item that is critical to a Trainer''s quest, used for catching and storing Pokémon.	Though the technology behind a Poké Ball remains unknown and has evolved through the centuries to accommodate the diverse requirements of their creators, the basic mechanics are simple enough to understand and tend to remain constant: in a Pokémon battle, once an opposing wild Pokémon has been weakened, the Pokémon Trainer can throw a Poké Ball at it. When a Poké Ball hits the Pokémon, as long as it is not deflected, the Poké Ball will open, convert the Pokémon to a form of energy, pull it into its center, and close. A Pokémon in this state is given a chance to struggle to attempt to break free from the ball and escape, being instantly re-converted from energy into matter. Should a Pokémon escape a Poké Ball, the device will either be destroy or will return to the Trainer, who can attempt once again to catch the Pokémon. A Pokémon who does not escape the Ball will be caught.
+4	The Very Hungry Caterpillar	599	/images/hungrycaterp.jpg	The Very Hungry Caterpillar is a children''s picture book designed, illustrated, and written by Eric Carle	We have all seen caterpillars, and we know they turn into beautiful butterflies. But, how do they do it? Here is a charming book written by Eric Carle about a very hungry caterpillar that keeps eating a lot. This board book is well-illustrated to show kids what exactly the hungry caterpillar ate. The caterpillar is hungry through the story until it makes a cocoon and goes to sleep. This book is a classic among picture books, and makes for a great gift for children.
+8	Tie Set	1999	/images/ties.jpg	A nice set of ties.	A necktie, or simply a tie, is a long piece of cloth, worn, usually by men, for decorative purposes around the neck, resting under the shirt collar and knotted at the throat. Variants include the ascot, bow, bolo, zipper, cravat, and knit. The modern necktie, ascot, and bow tie are descended from the cravat. Neckties are generally unsized, but may be available in a longer size. In some cultures men and boys wear neckties as part of regular office attire or formal wear. Some women wear them as well but usually not as often as men. Neckties can also be worn as part of a uniform (e.g. military, school, waitstaff), whereas some choose to wear them as everyday clothing attire. Neckties are traditionally worn with the top shirt button fastened, and the tie knot resting between the collar points.
+7	Now 7	799	/images/now7.jpg	Now That''s What I Call Music! 7 was released on July 31, 2001. The album is the seventh edition of the (U.S.) Now! series.	Now That''s What I Call Music! 7 was released on July 31, 2001. The album is the seventh edition of the (U.S.) Now! series. It debuted at number one on the Billboard 200 albums chart, selling 621,000 copies in its first week, the highest opening week of sales for any U.S. Now! album to date. It is the third number-one album in the series and has been certified 3× Platinum by the RIAA. Now! 7 is the first in the series to also crossover onto the Billboard Top R&B/Hip-Hop Albums chart, peaking at number three. The album features one track, "All for You", that reached number one on the Billboard Hot 100.
+9	Tie Fighter	8500000	/images/tiefighter.jpg	Classic Imperial ship. Human for scale.	The TIE fighter was the unforgettable symbol of the Imperial fleet. Carried aboard Star Destroyers and battle stations, TIE fighters were single-pilot vehicles designed for fast-paced dogfights with Rebel X-wings and other starfighters. The iconic TIE fighter led to other models in the TIE family including the dagger-shaped TIE Interceptor and the explosive-laden TIE bomber. The terrifying roar of a TIE's engines would strike fear into the hearts of all enemies of the Empire.
 \.
 
 
@@ -426,14 +268,14 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 86, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 1, false);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 77, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 1, false);
 
 
 --
@@ -447,7 +289,7 @@ SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
 -- Name: products_productId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."products_productId_seq"', 1, false);
+SELECT pg_catalog.setval('public."products_productId_seq"', 9, true);
 
 
 --
@@ -475,14 +317,6 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products
-    ADD CONSTRAINT products_pkey PRIMARY KEY ("productId");
-
-
---
 -- Name: SCHEMA public; Type: ACL; Schema: -; Owner: -
 --
 
@@ -492,4 +326,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-
