@@ -126,7 +126,7 @@ export default class App extends React.Component {
     return this.state.isLoading
       ? <h1>Testing connections...</h1>
       : <div className="container">
-        <Header cart={this.state.cart} setView={this.setView}/>
+        <Header cart={this.state.cart} view={this.state.view} setView={this.setView}/>
         {component}
       </div>;
   }

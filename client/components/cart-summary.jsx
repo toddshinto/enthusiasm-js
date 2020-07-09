@@ -16,13 +16,13 @@ export default class CartSummary extends React.Component {
     }
     return (
       <>
-        <div className="row">
+        <div className="row back-row">
           <button className="btn btn-link back" onClick={() => this.props.setView('catalog', {})}>{'<'} Back to catalog</button>
         </div>
         <h1>Your Cart</h1>
         {cartItems.map(item =>
           <CartSummaryItem key={cartItems.indexOf(item)} item={item}/>)}
-        <div className="d-flex flex-row justify-content-between pl-4 pr-4">
+        <div className="d-flex flex-row justify-content-between pl-4 pr-4 mt-3">
           <h3>Total: {total} </h3>
           <button
             type="button"
