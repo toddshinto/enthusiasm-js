@@ -3,7 +3,7 @@
 
 [![livesite][1]][2]
 
-[1]:  /images/logo.png
+[1]:  /readme-images/logo.png
 [2]:  https://enthusiasm.toddshinto.com "Redirect to homepage"
 
 ### [Live Site](https://enthusiasm.toddshinto.com)
@@ -26,7 +26,7 @@
 * User can review items
 * User can hover over cart to display items inside
 
-![product-list](/images/product-list.png)
+![product-list](/readme-images/product-list.png)
 
 ### Support
 Reach out to me at one of these places!
