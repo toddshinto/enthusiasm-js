@@ -48,7 +48,7 @@ export default class CheckoutForm extends React.Component {
   }
 
   validate(creditCard) {
-    return creditCard.length === 12;
+    return creditCard.length === 16;
   }
 
   handleReset() {
@@ -107,7 +107,7 @@ export default class CheckoutForm extends React.Component {
                 name="creditCard"
                 id="creditCard"
                 onBlur={this.handleBlur}
-                maxLength={12}
+                maxLength={16}
                 onChange={this.handleChangeCC}
                 value={this.state.creditCard}
                 placeholder="0000 0000 0000 0000"
