@@ -113,7 +113,7 @@ export default class CheckoutForm extends React.Component {
                 placeholder="0000 0000 0000 0000"
                 required />
             </div>
-            {touched ? <p className="text-right w-100 text-danger">12 digits required</p> : <></>}
+            {touched ? <p className="text-right w-100 text-danger">16 digits required!</p> : <></>}
           </div>
           <div className="form-group col-12">
             <label htmlFor="shippingAddress">
