@@ -1,3 +1,7 @@
+* {
+  border-collapse: separate
+}
+
 .card-md {
   width: 500px;
 }
